@@ -17,7 +17,7 @@ It is designed to be:
 Installation
 
 ```bash
-go get github.com/Bazcampbell/gamma-api-go
+go get github.com/Bazcampbell/gammago
 ```
 
 Quick Start
@@ -32,7 +32,7 @@ package main
 import (
     "log"
 
-    gamma "github.com/Bazcampbell/gamma-api-go"
+    gamma "github.com/Bazcampbell/gammago"
 )
 
 func main() {
