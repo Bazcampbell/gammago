@@ -73,6 +73,33 @@ Notes:
 - Safe to call multiple times, but only the first call has effect
 - Completely optional
 
+Pretty Printing
+
+All types implement the fmt.Stringer interface with formatted output for easy debugging and logging:
+
+```go
+event, err := gamma.GetEventByID([]string{"123456"})
+if err != nil {
+    log.Fatal(err)
+}
+
+// Automatically pretty-printed
+fmt.Println(event)
+// Output:
+// Event{
+//   ID: 123456
+//   Title: Lakers vs Celtics
+//   Slug: lakers-vs-celtics
+//   Active: true
+//   StartDate: 2026-01-15 19:30:00
+//   EndDate: 2026-01-15 22:00:00
+//   Markets: [3 markets]
+//     - Will Lakers win? (ID: abc123)
+//     - Total points over 220.5? (ID: def456)
+//     - Point spread -5.5 (ID: ghi789)
+//   ...
+// }
+```
 
 API Endpoints
 
