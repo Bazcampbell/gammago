@@ -132,12 +132,12 @@ func GetEventsBeforeDate(
 }
 
 // GetEventsBetweenDates gets events starting and ending between two dates
-func GetEventsBeforeDate(
+func GetEventsBetweenDates(
 	limit,
 	offset,
 	volumeMin,
 	tagId int,
-	endDate time.Time,
+	endDate time.Time,git a
 	startDate time.Time,
 	status Status,
 ) ([]Event, error) {
