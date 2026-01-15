@@ -100,7 +100,7 @@ func GetEventByID(id string) (Event, error) {
 	return genericGet[Event](reqUrl)
 }
 
-// GetEventsBetweenDates gets events between specified dates
+// GetEventsBeforeDate gets ALL events ending before a specific date
 func GetEventsBeforeDate(
 	limit,
 	offset,
@@ -115,6 +115,39 @@ func GetEventsBeforeDate(
 	params.Add("tag_id", strconv.Itoa(tagId))
 	params.Add("order", "volume")
 	params.Add("end_date_max", endDate.Format("2006-01-02T15:04:05Z"))
+	params.Add("volume_min", strconv.Itoa(volumeMin))
+
+	if status == ACTIVE {
+		params.Add("active", "true")
+		params.Add("closed", "false")
+	}
+
+	if status == CLOSED {
+		params.Add("active", "false")
+		params.Add("closed", "true")
+	}
+
+	reqUrl, _ := buildUrl("events", params)
+	return genericGet[[]Event](reqUrl)
+}
+
+// GetEventsBetweenDates gets events starting and ending between two dates
+func GetEventsBeforeDate(
+	limit,
+	offset,
+	volumeMin,
+	tagId int,
+	endDate time.Time,
+	startDate time.Time,
+	status Status,
+) ([]Event, error) {
+	params := url.Values{}
+	params.Add("limit", strconv.Itoa(limit))
+	params.Add("offset", strconv.Itoa(offset))
+	params.Add("tag_id", strconv.Itoa(tagId))
+	params.Add("order", "volume")
+	params.Add("end_date_max", endDate.Format("2006-01-02T15:04:05Z"))
+	params.Add("start_date_min", startDate.Format("2006-01-02T15:04:05Z"))
 	params.Add("volume_min", strconv.Itoa(volumeMin))
 
 	if status == ACTIVE {
