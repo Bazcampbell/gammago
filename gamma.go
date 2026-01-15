@@ -137,7 +137,7 @@ func GetEventsBetweenDates(
 	offset,
 	volumeMin,
 	tagId int,
-	endDate time.Time,git a
+	endDate time.Time,
 	startDate time.Time,
 	status Status,
 ) ([]Event, error) {
