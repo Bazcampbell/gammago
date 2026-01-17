@@ -147,7 +147,7 @@ func GetEventsBetweenDates(
 	params.Add("tag_id", strconv.Itoa(tagId))
 	params.Add("order", "volume")
 	params.Add("end_date_max", endDate.Format("2006-01-02T15:04:05Z"))
-	params.Add("start_date_min", startDate.Format("2006-01-02T15:04:05Z"))
+	params.Add("end_date_min", startDate.Format("2006-01-02T15:04:05Z"))
 	params.Add("volume_min", strconv.Itoa(volumeMin))
 
 	if status == ACTIVE {
